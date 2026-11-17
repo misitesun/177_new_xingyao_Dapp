@@ -6,6 +6,7 @@
 import Web3Init from "../web3-init.js";
 
 const isLocalChain = process.env.VUE_APP_CHAIN_ID === '31337';
+const isBscMainnet = process.env.VUE_APP_CHAIN_ID === '56';
 
 export default {
     async erc20Init(name) {
@@ -23,7 +24,9 @@ export default {
         instance = new Web3Init({
             artifact: null,
             address: address,
-            abi: require('../abi/ERC20.json')
+            abi: isBscMainnet
+                ? require('../abi/bsc/ERC20.json')
+                : require('../abi/ERC20.json')
         });
         let obj = await instance.init();
         return obj;

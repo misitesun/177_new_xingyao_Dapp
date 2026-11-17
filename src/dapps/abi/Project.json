@@ -116,6 +116,17 @@
     "type": "error"
   },
   {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "shine",
+        "type": "address"
+      }
+    ],
+    "name": "InvalidShine",
+    "type": "error"
+  },
+  {
     "inputs": [],
     "name": "InvalidSignature",
     "type": "error"
@@ -172,6 +183,11 @@
       }
     ],
     "name": "SafeERC20FailedOperation",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ShineUnchanged",
     "type": "error"
   },
   {
@@ -321,6 +337,25 @@
       }
     ],
     "name": "Paused",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousShine",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newShine",
+        "type": "address"
+      }
+    ],
+    "name": "ShineUpdated",
     "type": "event"
   },
   {
@@ -651,7 +686,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "",
+        "name": "donor",
         "type": "address"
       }
     ],
@@ -669,70 +704,69 @@
   {
     "inputs": [
       {
-        "internalType": "address",
-        "name": "initialOwner",
-        "type": "address"
-      },
-      {
-        "internalType": "contract IERC20",
-        "name": "usdt_",
-        "type": "address"
-      },
-      {
-        "internalType": "contract VBep20Interface",
-        "name": "vusd_",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "tenPercentReceiver_",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "ninetyPercentReceiver_",
-        "type": "address"
+        "components": [
+          {
+            "internalType": "address",
+            "name": "initialOwner",
+            "type": "address"
+          },
+          {
+            "internalType": "contract IERC20",
+            "name": "usdt",
+            "type": "address"
+          },
+          {
+            "internalType": "contract VBep20Interface",
+            "name": "vusd",
+            "type": "address"
+          },
+          {
+            "internalType": "contract IERC20",
+            "name": "star",
+            "type": "address"
+          },
+          {
+            "internalType": "contract IERC20",
+            "name": "sol",
+            "type": "address"
+          },
+          {
+            "internalType": "contract VBep20Interface",
+            "name": "vsol",
+            "type": "address"
+          },
+          {
+            "internalType": "contract IERC20",
+            "name": "shine",
+            "type": "address"
+          },
+          {
+            "internalType": "contract IStarShineFeeVault",
+            "name": "feeVault",
+            "type": "address"
+          },
+          {
+            "internalType": "contract IPancakeSwapV2Router",
+            "name": "pancakeSwapV2Router",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "ninetyPercentReceiver",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "tenPercentReceiver",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct StarShineProjectV1.Initialization",
+        "name": "settings",
+        "type": "tuple"
       }
     ],
     "name": "initialize",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "contract IERC20",
-        "name": "star_",
-        "type": "address"
-      },
-      {
-        "internalType": "contract IERC20",
-        "name": "sol_",
-        "type": "address"
-      },
-      {
-        "internalType": "contract VBep20Interface",
-        "name": "vsol_",
-        "type": "address"
-      },
-      {
-        "internalType": "contract IERC20",
-        "name": "shine_",
-        "type": "address"
-      },
-      {
-        "internalType": "contract IStarShineFeeVault",
-        "name": "feeVault_",
-        "type": "address"
-      },
-      {
-        "internalType": "contract IPancakeSwapV2Router",
-        "name": "pancakeSwapV2Router_",
-        "type": "address"
-      }
-    ],
-    "name": "initializeV2",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -820,16 +854,29 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "tenPercentReceiver_",
+        "name": "ninetyPercentReceiver_",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "ninetyPercentReceiver_",
+        "name": "tenPercentReceiver_",
         "type": "address"
       }
     ],
     "name": "setDonationReceivers",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "shine_",
+        "type": "address"
+      }
+    ],
+    "name": "setShine",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -877,7 +924,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "id",
         "type": "uint256"
       }
     ],
@@ -896,7 +943,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "id",
         "type": "uint256"
       }
     ],
@@ -915,7 +962,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "id",
         "type": "uint256"
       }
     ],
@@ -934,7 +981,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "",
+        "name": "id",
         "type": "uint256"
       }
     ],
