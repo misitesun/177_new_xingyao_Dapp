@@ -1,0 +1,197 @@
+---
+alwaysApply: true
+description: Vue DApp 项目结构和开发规范
+---
+
+# Vue DApp 项目结构规范
+您是一名高级 Vue JavaScript 程序员，具有 Vue 框架的经验，并偏好干净的编程和设计模式。
+
+生成符合基本原则和命名规范的代码、修正和重构。
+
+## 项目架构
+
+本项目是一个基于 Vue 2.x 的 DApp 应用，采用模块化架构模式，主要结构如下：
+
+```
+src/
+├── main.js                 # 应用入口点
+├── App.vue                 # 根组件
+├── assets/                 # 静态资源
+│   ├── css/               # 样式文件
+│   ├── images/            # 图片资源
+│   └── img/               # 图标资源
+├── components/            # 公共组件
+├── dapps/                 # DApp 相关模块
+│   ├── abi/              # 智能合约 ABI
+│   ├── api/              # 区块链 API
+│   └── config/           # DApp 配置
+├── i18n/                 # 国际化配置
+├── pages/                # 页面组件
+│   └── tabbar/           # 底部导航页面
+├── router/               # 路由配置
+├── store/                # Vuex 状态管理
+└── utils/                # 工具类
+```
+
+## 核心文件说明
+
+### 应用入口
+- `main.js` - 应用主入口，包含插件注册、路由配置、国际化配置
+- `App.vue` - 根组件，包含全局布局和路由视图
+
+### DApp 模块 (dapps/)
+
+#### 智能合约集成
+- `dapps/abi/` - 存放智能合约 ABI 文件
+  - `ERC20.json` - ERC20 代币合约 ABI
+  - `Biz.json` - 业务合约 ABI
+  - `PancakeswapPair.json` - PancakeSwap 交易对合约 ABI
+
+#### 区块链 API
+- `dapps/api/` - 区块链交互 API
+  - `erc20.js` - ERC20 代币操作
+  - `biz.js` - 业务逻辑 API
+  - `pancakeswapPair.js` - PancakeSwap 交易对操作
+
+#### 配置管理
+- `dapps/config/` - DApp 配置文件
+  - `configuration.js` - 区块链网络配置
+
+### 页面模块 (pages/)
+
+#### 底部导航
+- `pages/tabbar/` - 底部导航页面
+  - `index.vue` - 首页
+  - `assets.vue` - 资产页面
+  - `market.vue` - 市场页面
+  - `strategy.vue` - 策略页面
+
+### 公共组件 (components/)
+- `countTo.vue` - 数字动画组件
+- `navBar.vue` - 导航栏组件
+- `navFoot.vue` - 底部导航组件
+- `noData.vue` - 空状态组件
+- `MessageTip.vue` - 消息提示组件
+
+## 技术栈规范
+
+### 核心框架
+- **Vue 2.6.14** - 前端框架
+- **Vue Router 3.5.1** - 路由管理
+- **Vuex 3.6.2** - 状态管理
+- **Vuex Persistedstate** - 状态持久化
+
+### UI 组件库
+- **Vant 2.13.2** - 移动端 UI 组件库
+- **V-Charts 1.19.0** - 图表组件
+- **ECharts 5.3.3** - 数据可视化
+
+### 区块链集成
+- **Ethers 5.4.0** - 以太坊 JavaScript 库
+- **MetaMask Detect Provider** - MetaMask 钱包检测
+- **BigNumber.js** - 大数处理
+
+### 工具库
+- **Axios 1.7.7** - HTTP 请求库
+- **Vue-i18n 8.22.3** - 国际化
+- **Vue-clipboard2** - 剪贴板操作
+- **QRCode.js** - 二维码生成
+- **Swiper 5.4.5** - 轮播组件
+
+### 样式处理
+- **Less 4.2.0** - CSS 预处理器
+- **PostCSS PxToRem** - 移动端适配
+- **Lib-flexible** - 移动端适配
+
+## 开发规范
+
+### 文件命名
+- 使用 kebab-case 命名法
+- 组件文件使用 PascalCase
+- 工具文件使用 camelCase
+- 常量文件使用 UPPER_CASE
+
+### 组件开发
+- 使用 Vue 2.x 语法
+- 优先使用 Vant 组件
+- 自定义组件放在 `components/` 目录
+- 页面组件放在 `pages/` 目录
+
+### 状态管理
+- 使用 Vuex 进行全局状态管理
+- 模块化组织 store
+- 使用 vuex-persistedstate 持久化关键状态
+
+### 路由管理
+- 使用 Vue Router 3.x
+- 路由懒加载
+- 路由守卫处理权限
+
+### 国际化
+- 使用 vue-i18n 8.x
+- 支持中文、英文、繁体中文、日文、韩文
+- 语言文件按模块组织
+
+### 区块链交互
+- 使用 ethers.js 进行区块链交互
+- 统一错误处理
+- 支持 MetaMask 钱包连接
+- 大数使用 BigNumber.js 处理
+
+### 样式规范
+- 使用 Less 预处理器
+- 移动端优先设计
+- 使用 rem 单位适配不同屏幕
+- 主题色彩统一管理
+
+### API 调用
+- 使用 Axios 进行 HTTP 请求
+- 统一请求拦截器处理
+- 统一错误处理机制
+- 支持请求重试
+
+## 性能优化
+
+### 代码分割
+- 路由懒加载
+- 组件按需加载
+- 第三方库按需引入
+
+### 资源优化
+- 图片压缩和懒加载
+- 字体文件优化
+- 静态资源 CDN 加速
+
+### 缓存策略
+- 合理使用浏览器缓存
+- API 数据缓存
+- 组件缓存优化
+
+## 安全规范
+
+### 钱包安全
+- 私钥不在前端存储
+- 使用 MetaMask 等安全钱包
+- 交易签名在钱包内完成
+
+### 合约安全
+- 合约地址验证
+- 交易参数校验
+- 异常情况处理
+
+## 测试规范
+
+### 单元测试
+- 工具函数测试
+- 组件功能测试
+- API 接口测试
+
+### 集成测试
+- 钱包连接测试
+- 交易流程测试
+- 多语言测试
+
+### 兼容性测试
+- 不同浏览器测试
+- 不同设备测试
+- 不同网络环境测试
