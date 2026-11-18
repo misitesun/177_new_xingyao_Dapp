@@ -14,7 +14,7 @@
                         :class="{ active: activeAssetIndex === index }"
                         @click="selectAsset(index)"
                     >
-                        {{ $t(item.labelKey || item.symbol) }}
+                        {{ item.labelKey ? $t(item.labelKey) : getTokenLabel(item.symbol) }}
                     </button>
                 </div>
             </section>
@@ -64,7 +64,7 @@
                         v-for="(item, index) in todayIncome"
                         :key="'today-' + index"
                     >
-                        <div class="income-label">{{ $t(item.labelKey) }}({{ item.token }})</div>
+                        <div class="income-label">{{ $t(item.labelKey) }}({{ getTokenLabel(item.token) }})</div>
                         <div class="income-value">
                             <strong>{{ item.valueMain }}</strong><span>{{ item.valueSub }}</span>
                         </div>
@@ -85,7 +85,7 @@
                         v-for="(item, index) in totalIncome"
                         :key="'total-' + index"
                     >
-                        <div class="income-label">{{ $t(item.labelKey) }}({{ item.token }})</div>
+                        <div class="income-label">{{ $t(item.labelKey) }}({{ getTokenLabel(item.token) }})</div>
                         <div class="income-value">
                             <strong>{{ item.valueMain }}</strong><span>{{ item.valueSub }}</span>
                         </div>
@@ -110,7 +110,7 @@
                     <span>{{ $t('提现资产') }}</span>
                     <div class="df-aic">
                         <img :src="withdrawAsset.icon" alt="" />
-                        <strong>{{ withdrawAsset.symbol }}</strong>
+                        <strong>{{ getTokenLabel(withdrawAsset.symbol) }}</strong>
                     </div>
                 </div>
 
@@ -247,6 +247,9 @@ export default {
         }
     },
     methods: {
+        getTokenLabel(symbol) {
+            return symbol === 'SHINE' ? 'SHINE SOL' : symbol
+        },
         withdrawAll() {
             this.withdrawAmount = this.withdrawAsset.balance
         },

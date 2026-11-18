@@ -17,7 +17,7 @@
             <section class="record-hero">
                 <div class="token-title df-aic">
                     <img :src="currentToken.icon" alt="" />
-                    <h1>{{ currentToken.symbol }}</h1>
+                    <h1>{{ getTokenLabel(currentToken.symbol) }}</h1>
                 </div>
                 <p>{{ $t('查看资产余额变动明细') }}</p>
             </section>
@@ -30,7 +30,7 @@
                             
                         </div>
                         <div class="record-amount" :class="{ income: item.isIncrease, expense: !item.isIncrease }">
-                            {{ item.amount }} {{ item.symbol }}
+                            {{ item.amount }} {{ getTokenLabel(item.symbol) }}
                         </div>
                     </div>
 
@@ -166,6 +166,9 @@ export default {
             if (ccy === 'star_balance') return 'STAR'
             if (ccy === 'shine_balance') return 'SHINE'
             return String(ccy || '').replace(/_balance$/g, '').toUpperCase() || '--'
+        },
+        getTokenLabel(symbol) {
+            return symbol === 'SHINE' ? 'SHINE SOL' : symbol
         },
         formatApiValue(value) {
             if (value === undefined || value === null) return ''

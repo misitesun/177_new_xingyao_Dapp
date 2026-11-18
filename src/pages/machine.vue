@@ -12,7 +12,7 @@
                 <div class="machine-card" v-for="(item, index) in list" :key="index">
                     <div class="machine-card-head df-aic-jusb">
                         <div>
-                            <strong>{{ item.totalAmount }} SHINE</strong>
+                            <strong>{{ item.totalAmount }} SHINE SOL</strong>
                             <span>{{ $t('总释放') }}</span>
                         </div>
                         <div class="progress-box">
@@ -25,7 +25,7 @@
 
                     <div class="machine-row df-aic-jusb">
                         <span>{{ $t('已释放') }}</span>
-                        <strong class="gold">{{ item.releasedAmount }} SHINE</strong>
+                        <strong class="gold">{{ item.releasedAmount }} SHINE SOL</strong>
                     </div>
                     <div class="machine-row df-aic-jusb">
                         <span>{{ $t('时间') }}</span>
@@ -104,7 +104,7 @@ export default {
                 releasedAmount,
                 time: item.created_at || '',
                 progress: this.getProgress(item.out_amount, item.release_amount, isCompleted),
-                progressText: isCompleted ? '' : `${releasedAmount}/${totalAmount} SHINE`,
+                progressText: isCompleted ? '' : `${releasedAmount}/${totalAmount} SHINE SOL`,
                 statusKey: isCompleted ? '已完成' : '',
             }
         },

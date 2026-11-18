@@ -23,7 +23,7 @@
                 <img src="@img/levelDividend2.png" alt="" class="self-dividend-background">
                 <div class="self-dividend-value">
                     <span class="amount">{{ formatAmount(levelDividendInfo.self_dividend) }}</span>
-                    <span class="token">SHINE</span>
+                    <span class="token">SHINE SOL</span>
                 </div>
                 <p>{{ $t('自己当前已分红') }}</p>
             </section>
@@ -41,7 +41,7 @@
                         <div class="level-stat">
                             <div class="level-value">
                                 <span class="amount">{{ formatAmount(item.total_pool) }}</span>
-                                <span class="token">shine</span>
+                                <span class="token">SHINE SOL</span>
                             </div>
                             <p>{{ $t('累计分红池金额') }}</p>
                         </div>
@@ -51,7 +51,7 @@
                         <div class="level-stat">
                             <div class="level-value">
                                 <span class="amount">{{ formatAmount(item.pending_pool) }}</span>
-                                <span class="token">shine</span>
+                                <span class="token">SHINE SOL</span>
                             </div>
                             <p>{{ $t('待分红金额') }}</p>
                         </div>

@@ -20,7 +20,7 @@
                         <span>{{ $t('转出金额') }}</span>
                         <div class="balance df-aic">
                             <img src="@img/swap3.png" alt="" />
-                            <span>{{ formatAmount(currentBalance, 6) }} {{ currentSymbol }}</span>
+                            <span>{{ formatAmount(currentBalance, 6) }} {{ getTokenLabel(currentSymbol) }}</span>
                             <b @click.stop="setMaxAmount">{{ $t('全部') }}</b>
                         </div>
                     </div>
@@ -30,9 +30,7 @@
                             <img src="@img/star.png" alt="" class="coin-icon" v-if="selectCoin === 'star'"/>
                             <img src="@img/shine.png" alt="" class="coin-icon" v-if="selectCoin === 'shine'"/>
                             <img src="@img/sol.png" alt="" class="coin-icon" v-if="selectCoin === 'sol'"/>
-                            <span v-if="selectCoin === 'star'">STAR</span>
-                            <span v-if="selectCoin === 'shine'">SHINE</span>
-                            <span v-if="selectCoin === 'sol'">SOL</span>
+                            <span>{{ getTokenLabel(currentSymbol) }}</span>
                             <i></i>
                         </div>
                         <div class="amount-box">
@@ -57,14 +55,14 @@
                         <span>{{ $t('转入金额') }}</span>
                         <div class="balance df-aic">
                             <img src="@img/swap3.png" alt="" />
-                            <span>{{ formatAmount(targetBalance, 6) }} {{ targetSymbol }}</span>
+                            <span>{{ formatAmount(targetBalance, 6) }} {{ getTokenLabel(targetSymbol) }}</span>
                         </div>
                     </div>
 
                     <div class="coin-row df-aic-jusb">
                         <div class="coin-select coin-fixed df-aic">
                             <img :src="targetCoinIcon" alt="" class="coin-icon" />
-                            <span>{{ targetSymbol }}</span>
+                            <span>{{ getTokenLabel(targetSymbol) }}</span>
                         </div>
                         <div class="amount-box">
                             <strong>{{ estimatedSolAmount }}</strong>
@@ -136,6 +134,7 @@ import solIcon from '@img/sol.png'
 
 const PROJECT_ADDRESS = process.env.VUE_APP_PROJECT_ADDRESS
 const ROUTER_ADDRESS = process.env.VUE_APP_ROUTER_ADDRESS
+const SHINE_DISPLAY_NAME = 'SHINE SOL'
 const MAX_APPROVE_AMOUNT = '21000000000000000000000000'
 const MIN_RECEIVE_RATE_BPS = 6850
 
@@ -173,7 +172,7 @@ export default {
                     value: 'star',
                 },
                 {
-                    name: 'SHINE',
+                    name: SHINE_DISPLAY_NAME,
                     value: 'shine',
                 },
                 {
@@ -230,6 +229,9 @@ export default {
         },
     },
     methods: {
+        getTokenLabel(symbol) {
+            return symbol === 'SHINE' ? SHINE_DISPLAY_NAME : symbol
+        },
         onSelect(item) {
             this.selectCoin = item.value
             this.show = false
@@ -801,6 +803,7 @@ export default {
 
         span {
             margin-left: 18px;
+            white-space: nowrap;
         }
 
         i {
@@ -826,6 +829,7 @@ export default {
     }
 
     .amount-box {
+        min-width: 0;
         text-align: right;
         .amount-input {
             width: 100%;
