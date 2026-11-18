@@ -3,7 +3,7 @@
         <!-- <navBar :url="'login'" /> -->
 		<div class="mask"></div>
 		<img src="@common/qidong1.png" alt="" class="animate__animated animate__swing logo1">
-        <img src="@common/qidong2.png" alt="" class="animate__animated animate__swing logo2">
+        <img src="@common/starshine-sol-wordmark.png" alt="StarShine SOL" class="animate__animated animate__swing logo2" width="640" height="116">
 
         
 	</div>
@@ -165,7 +165,8 @@
     .logo2{
         display: block;
         margin: auto;
-        width: 300px;
+        width: 360px;
+        height: auto;
     }
 	.mask {
 		position: fixed;

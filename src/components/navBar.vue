@@ -2,8 +2,7 @@
     <div class="navbar">
         <div class="navbar-box df-aic-jusb pr-30">
             <div class="df-aic ml-30 animate__animated animate__fadeInLeft" @click="isShow = !isShow">
-                <img src="@common/logo.png" alt="" class="logo"  v-if="lang == 'zh-Hans'"/>
-                <img src="@common/logoEn.png" alt="" class="logo"  v-else/>
+                <img src="@common/starshine-sol-logo.png" alt="StarShine SOL" class="logo" width="640" height="166" />
             </div>
 
             <div class="df-aic animate__animated animate__fadeInRight">
@@ -369,8 +368,9 @@ export default {
     }
 
     .logo {
-        width: 193px;
-        height: 52px;
+        display: block;
+        width: 216px;
+        height: auto;
     }
 
     .slide-menu {
